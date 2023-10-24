@@ -1,7 +1,7 @@
 const inputBox = document.getElementById("input-box");
 const button = document.querySelector("button");
 const list = document.getElementById("list-container");
-
+ 
 function addTask() {
   if (inputBox.value === "") {
     alert("you must write something!");
@@ -9,7 +9,7 @@ function addTask() {
     let category = document.getElementById("category").value;
     let li = document.createElement("li");
     let dueDate = document.getElementById("due-date").value;
-    let currentDate = new Date();
+     let currentDate = new Date();
     let taskDetails = `${category}: ${inputBox.value} (Due: ${dueDate})`;
     li.innerHTML = taskDetails;
     list.appendChild(li);
@@ -18,46 +18,42 @@ function addTask() {
     span.innerHTML = "x";
     li.appendChild(span);
 
+
+    // Add notification here
     let notificationTime = new Date(dueDate);
     if (notificationTime > currentDate) {
-      const timeDiff = notificationTime.getTime() - currentDate.getTime();
+      const timeDiff = notificationTime - currentDate;
       setTimeout(() => {
-        if (Notification.permission === "granted") {
-          new Notification(`Task Due!`, {
-            body: `Your task ${inputBox.value} is due date!`,
-          });
-        } else if (Notification.permission !== "denied") {
-          Notification.requestPermission().then((permission) => {
-            if (permission === "granted") {
-              new Notification(`Task Due!`, {
-                body: `Your task ${inputBox.value} is due now!`,
-              });
-            }
-          });
-        }
-      }, timeDiff);
-    } else if (notificationTime <= currentDate) {
-      alert(`Your task is already due!`);
+       alert(`Your task ${inputBox.value} is due now!`);
+    }, timeDiff);
     }
   }
-  saveData();
+  saveDate();
 }
-
+// Function to handle task clicks and deletion
 list.addEventListener("click", (e) => {
   if (e.target.tagName === "LI") {
+    // Toggle the checked class for the task
     e.target.classList.toggle("checked");
+    // Save the updated data
     saveData();
   } else if (e.target.tagName === "SPAN") {
+    // Remove the task if the delete button is clicked
     e.target.parentElement.remove();
+    // Save the updated data
     saveData();
   }
 });
+
+// Event listener for the Add Task button
 button.addEventListener("click", addTask);
 
+// Function to save the data to local storage
 function saveData() {
   localStorage.setItem("data", list.innerHTML);
 }
 
+// Function to show tasks on page load
 function showTask() {
   const savedData = localStorage.getItem("data");
   if (savedData) {
@@ -65,4 +61,12 @@ function showTask() {
   }
 }
 
+// Event listener for the page load event
 window.addEventListener("load", showTask);
+
+// Event listener for the beforeunload event
+window.addEventListener("beforeunload", function (e) {
+  notifications.forEach(notification => clearTimeout(notification));
+  e.preventDefault();
+  e.returnValue = '';
+});
