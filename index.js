@@ -21,7 +21,7 @@ function addTask() {
     // Add notification here
     let notificationTime = new Date(dueDate);
     if (notificationTime > currentDate) {
-      const timeDiff = notificationTime - currentDate;
+      const timeDiff = notificationTime.getTime() - currentDate.getTime();
       setTimeout(() => {
         if (Notification.permission === "granted") {
           new Notification(`task Due!`, {
