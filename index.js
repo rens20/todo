@@ -18,18 +18,17 @@ function addTask() {
     span.innerHTML = "x";
     li.appendChild(span);
 
-    // Add notification here
     let notificationTime = new Date(dueDate);
     if (notificationTime > currentDate) {
       const timeDiff = notificationTime.getTime() - currentDate.getTime();
       setTimeout(() => {
         if (Notification.permission === "granted") {
-          new Notification(`task Due!`, {
+          new Notification(`Task Due!`, {
             body: `Your task ${inputBox.value} is due date!`,
           });
         } else if (Notification.permission !== "denied") {
           Notification.requestPermission().then((permission) => {
-            if (permission === " granted") {
+            if (permission === "granted") {
               new Notification(`Task Due!`, {
                 body: `Your task ${inputBox.value} is due now!`,
               });
@@ -37,10 +36,13 @@ function addTask() {
           });
         }
       }, timeDiff);
+    } else if (notificationTime <= currentDate) {
+      alert(`Your task is already due!`);
     }
   }
   saveData();
 }
+
 list.addEventListener("click", (e) => {
   if (e.target.tagName === "LI") {
     e.target.classList.toggle("checked");
@@ -50,16 +52,3 @@ list.addEventListener("click", (e) => {
     saveData();
   }
 });
-
-button.addEventListener("click", addTask);
-
-function saveData() {
-  localStorage.setItem("data", list.innerHTML);
-}
-function showTask() {
-  const savedData = localStorage.getItem("data");
-  if (savedData) {
-    list.innerHTML = savedData;
-  }
-}
-window.addEventListener("load", showTask);
