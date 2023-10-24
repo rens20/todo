@@ -270,17 +270,47 @@ span:hover {
     font-size: 18px;
 }
 
-li,
-a {
-    color: rgb(247, 34, 34);
-    text-decoration: none;
-    font-size: 4px;
-    display: flex;
-    justify-content: center;
 }
 
-li,
-a:hover {
-    color: #002765;
+/* CSS for footer */
+.app-footer {
+    text-align: center;
+    padding: 20px;
 }
+
+.footer-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.link {
+    text-decoration: none;
+    color: #333;
+    margin: 0 10px;
+    position: relative;
+}
+
+.link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #e23731;
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.link:hover::after,
+.link:focus::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Media Query for smaller screens */
+@media only screen and (max-width: 768px) {
+    .link {
+        margin: 0 5px;
+    }
 }
