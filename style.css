@@ -69,17 +69,34 @@ input {
     padding-left: 20px;
 
 }
-
+/***
 button {
     border: none;
     cursor: pointer;
     outline: none;
-    padding: 15px 50px;
-    border-radius: 30px;
+    border-radius: 20%;
     background-color: #ff5945;
     color: #fff;
     font-size: 18px;
     transition: all .25s ease;
+    text-align: center;
+    display: block;
+    margin: 5px;
+    padding: 10px 10px;
+} ***/
+button {
+    background-color: #e23731;
+    ;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    margin-left: 25%;
+    width:50%;
+    height: 50px;
+    border-radius: 30px;
+    margin-bottom: 10px;
 }
 
 button:hover {
@@ -102,13 +119,6 @@ button:hover {
     margin: 0 10px;
     color: #002765;
     font-size: 18px;
-}
-
-@media screen and (max-width: 470px) {
-    button {
-        padding: 15px;
-        border-radius: 0 30px 30px 0;
-    }
 }
 
 ul {
@@ -165,16 +175,21 @@ span:hover {
 }
 
 @media screen and (max-width: 470px) {
-
+        button {
+                width: 90%;
+                margin-left: 5%;
+                padding: 8px 16px;
+            }
     .container {
-            width: 100%;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #e23731, #ebb5a7);
-            padding: 13px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+        width: 100%;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #e23731, #ebb5a7);
+        padding: 13px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     .row {
         flex-direction: row;
     }
@@ -183,12 +198,7 @@ span:hover {
         width: 80%;
     }
 
-    button {
-        width: 25%;
-        padding: 10px;
-        border-radius: 0 30px 30px 0;
-    }
-}
+
 
 ul {
     list-style: none;
@@ -272,4 +282,5 @@ a {
 li,
 a:hover {
     color: #002765;
+}
 }
