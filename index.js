@@ -52,3 +52,17 @@ list.addEventListener("click", (e) => {
     saveData();
   }
 });
+button.addEventListener("click", addTask);
+
+function saveData() {
+  localStorage.setItem("data", list.innerHTML);
+}
+
+function showTask() {
+  const savedData = localStorage.getItem("data");
+  if (savedData) {
+    list.innerHTML = savedData;
+  }
+}
+
+window.addEventListener("load", showTask);
