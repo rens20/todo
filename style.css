@@ -17,7 +17,7 @@ body {
     width: 100%;
     min-height: 100vh;
     background: linear-gradient(135deg, #e23731, #ebb5a7);
-    padding: 10px;
+    padding: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -98,7 +98,7 @@ button:hover {
     list-style: none;
 }
 
-.footer-list li {
+.footer-list a {
     margin: 0 10px;
     color: #002765;
     font-size: 18px;
@@ -171,13 +171,22 @@ span:hover {
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 470px) {
+    .container {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #e23731, #ebb5a7);
+            padding: 13px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     .row {
         flex-direction: row;
     }
 
     input {
-        width: 70%;
+        width: 80%;
     }
 
     button {
